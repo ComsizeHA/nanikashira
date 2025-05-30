@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "KING OF TIME 勤怠入力支援",
+    "version": "1.0",
+    "description": "KING OF TIMEに自動で勤怠情報を入力します",
+    "permissions": ["scripting", "activeTab"],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+      }
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://*.kingtime.jp/*"],
+        "js": ["content.js"]
+      }
+    ]
+  }
