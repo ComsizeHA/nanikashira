@@ -1,25 +1,30 @@
-document.getElementById("submit").addEventListener("click", async () => {
-  const startTime = document.getElementById("startTime").value;
-  const endTime = document.getElementById("endTime").value;
-
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-
+chrome.action.onClicked.addListener((tab) => {
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    function: inputAttendance,
-    args: [startTime, endTime],
+    function: fillTextInputs_text
   });
 });
 
-function inputAttendance(start, end) {
-  // 例：KING OF TIMEの出勤・退勤時間の入力欄をセレクタで指定して値をセット
-  const startInput = document.querySelector("input[name='WorkStartTime']"); // セレクタは実際のものに書き換えてください
-  const endInput = document.querySelector("input[name='WorkEndTime']");
+function fillTextInputs_text() {
+  const inputs_text = document.querySelectorAll('input[id^="recording_timestamp_time"]');
+  const input_btn = document.getElementById("recording_timestamp_time_1");
+  if (inputs_text.length >= 2) {
+    inputs_text[0].focus();
+    inputs_text[0].value = "09:00";
+    inputs_text[0].dispatchEvent(new Event("input", { bubbles: true }));
+    inputs_text[0].dispatchEvent(new Event("change", { bubbles: true }));
 
-  if (startInput && endInput) {
-    startInput.value = start;
-    endInput.value = end;
+    inputs_text[2].focus();
+    inputs_text[2].value = "18:00";
+    inputs_text[2].dispatchEvent(new Event("input", { bubbles: true }));
+    inputs_text[2].dispatchEvent(new Event("change", { bubbles: true }));
+
   } else {
-    alert("入力欄が見つかりません。セレクタを確認してください。");
+    alert("対象のテキストボックスが見つかりません。");
+  }
+  if (input_btn != null) {
+    input_btn.click();
+  } else {
+    alert("ボタンが見つからないよ。");
   }
 }
