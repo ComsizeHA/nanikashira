@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "テキスト自動入力",
+  "name": "Rat of Time",
   "version": "1.0",
   "description": "テキストボックスに自動で値を入力します",
   "permissions": [
@@ -12,6 +12,16 @@
     "default_icon": "icon.png"
   },
   "background": {
-    "service_worker": "popup.js"
-  }
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "config.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
 }
