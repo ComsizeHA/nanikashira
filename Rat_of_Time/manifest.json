@@ -20,8 +20,19 @@
         "config.js"
       ],
       "matches": [
-        "<all_urls>"
+        "*://*.kingtime.jp/*"
       ]
+    }
+  ],
+  "options_ui" : {
+    "page" : "option.html",
+    "open_in_tab" : false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["utils.js"],
+      "run_at": "document_idle"
     }
   ]
 }
