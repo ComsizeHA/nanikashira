@@ -14,24 +14,19 @@
   "background": {
     "service_worker": "background.js"
   },
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "config.js"
-      ],
-      "matches": [
-        "*://*.kingtime.jp/*"
-      ]
-    }
-  ],
-  "options_ui" : {
-    "page" : "option.html",
-    "open_in_tab" : false
+  "options_ui": {
+    "page": "option.html",
+    "open_in_tab": false
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["utils.js"],
+      "matches": [
+        "*://*.kingtime.jp/*"
+      ],
+      "js": [
+        "utils.js",
+        "config.js"
+      ],
       "run_at": "document_idle"
     }
   ]
