@@ -5,19 +5,19 @@ function check_config() {
   }
 }
 
-function open_input() {
-  ///////////////入力画面を開く///////////////
-  const editmenu = document.querySelectorAll('select//[class^="htBlock-selectOther"]');
-
-  if (editmenu.length === 0) {
-    console.warn("ボタンが見つかりません。");
-    return;
-  }
-
-  editmenu[0].value = "#button_0590253740701";
-  editmenu[0].dispatchEvent(new Event("change", { bubbles: true }));
-  editmenu[0].dispatchEvent(new Event("input", { bubbles: true }));
-}
+//function open_input() {
+//  ///////////////入力画面を開く///////////////
+//  const editmenu = document.querySelectorAll('select//[class^="htBlock-selectOther"]');
+//
+//  if (editmenu.length === 0) {
+//    console.warn("ボタンが見つかりません。");
+//    return;
+//  }
+//
+//  editmenu[0].value = "#button_0590253740701";
+//  editmenu[0].dispatchEvent(new Event("change", { bubbles: true }));
+//  editmenu[0].dispatchEvent(new Event("input", { bubbles: true }));
+//}
 
 ///////////////入力枠を増やす///////////////
 function create_inputbox(times, work_status) {
@@ -68,5 +68,12 @@ function check_pageLoaded() {
     if (changeInfo.status === 'complete' && tab.url) {
       return;
     }
+  });
+}
+
+async function get_storage(){
+  chrome.storage.local.get({ atai: []}, (data) => {
+    alert(data.atai);
+    return data.atai;
   });
 }

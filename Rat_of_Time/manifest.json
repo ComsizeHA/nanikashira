@@ -6,7 +6,7 @@
   "permissions": [
     "scripting",
     "activeTab",
-    "strage",
+    "storage",
     "tabs"
   ],
   "action": {
