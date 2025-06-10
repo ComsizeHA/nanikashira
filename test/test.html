@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <title>トグルスイッチ</title>
@@ -41,33 +42,36 @@
       border-radius: 50%;
     }
 
-    input:checked + .slider {
+    input:checked+.slider {
       background-color: #4caf50;
     }
 
-    input:checked + .slider:before {
+    input:checked+.slider:before {
       transform: translateX(22px);
     }
   </style>
 </head>
+
 <body>
 
-<h3>トグルスイッチのデモ</h3>
+  <h3>トグルスイッチのデモ</h3>
 
-<label class="switch">
-  <input type="checkbox" id="toggle">
-  <span class="slider"></span>
-</label>
-<p id="stateLabel">現在の状態: 勤怠</p>
+  <label class="switch">
+    <input type="checkbox" id="toggle">
+    <span class="slider"></span>
+  </label>
+  <p id="stateLabel">現在の状態: 勤怠</p>
+  <input type="text" id="hogehoge">
 
-<script>
-  const toggle = document.getElementById('toggle');
-  const stateLabel = document.getElementById('stateLabel');
+  <script>
+    const toggle = document.getElementById('toggle');
+    const stateLabel = document.getElementById('stateLabel');
 
-  toggle.addEventListener('change', () => {
-    stateLabel.textContent = "現在の状態: " + (toggle.checked ? "休憩" : "勤怠");
-  });
-</script>
+    toggle.addEventListener('change', () => {
+      stateLabel.textContent = "現在の状態: " + (toggle.checked ? "休憩" : "勤怠");
+    });
+  </script>
 
 </body>
+
 </html>

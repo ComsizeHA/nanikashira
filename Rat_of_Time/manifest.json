@@ -5,7 +5,9 @@
   "description": "テキストボックスに自動で値を入力します",
   "permissions": [
     "scripting",
-    "activeTab"
+    "activeTab",
+    "strage",
+    "tabs"
   ],
   "action": {
     "default_title": "自動入力する",

@@ -61,3 +61,12 @@ function input_attendance(times, work_status) {
     input_time.dispatchEvent(new Event("change", { bubbles: true }));
   }
 }
+
+///////////////ページロード確認///////////////
+function check_pageLoaded() {
+  chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+    if (changeInfo.status === 'complete' && tab.url) {
+      return;
+    }
+  });
+}

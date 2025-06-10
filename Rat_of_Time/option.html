@@ -1,65 +1,76 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <title>ドラッグでON/OFF切替</title>
   <style>
     .button-container {
       display: flex;
-      gap: 5px;
+      gap: 1px;
       user-select: none;
     }
+
     .toggle-btn {
-      width: 50px;
-      height: 50px;
+      width: 30px;
+      height: 30px;
       border: none;
-      border-radius: 5px;
+      border-radius: 0px;
+      color: #a2a2a2;
       background-color: #ccc;
       cursor: pointer;
+      text-align: center;
     }
+
     .toggle-btn.active {
+      color: #3e3e3e;
       background-color: #4caf50;
     }
   </style>
 </head>
+
 <body>
   <div class="button-container" id="container">
     <!-- ボタンを10個作成 -->
-    <button class="toggle-btn"></button>
-    <button class="toggle-btn"></button>
-    <button class="toggle-btn"></button>
-    <button class="toggle-btn"></button>
-    <button class="toggle-btn"></button>
-    <button class="toggle-btn"></button>
-    <button class="toggle-btn"></button>
-    <button class="toggle-btn"></button>
-    <button class="toggle-btn"></button>
-    <button class="toggle-btn"></button>
+    <button class="toggle-btn">0</button>
+    <button class="toggle-btn">1</button>
+    <button class="toggle-btn">2</button>
+    <button class="toggle-btn">3</button>
+    <button class="toggle-btn">4</button>
+    <button class="toggle-btn">5</button>
+    <button class="toggle-btn">6</button>
+    <button class="toggle-btn">7</button>
+    <button class="toggle-btn">8</button>
+    <button class="toggle-btn">9</button>
+    <button class="toggle-btn">10</button>
+    <button class="toggle-btn">11</button>
+    <button class="toggle-btn">12</button>
+    <button class="toggle-btn">13</button>
+    <button class="toggle-btn">14</button>
+    <button class="toggle-btn">15</button>
+    <button class="toggle-btn">16</button>
+    <button class="toggle-btn">17</button>
+    <button class="toggle-btn">18</button>
+    <button class="toggle-btn">19</button>
+    <button class="toggle-btn">20</button>
+    <button class="toggle-btn">21</button>
+    <button class="toggle-btn">22</button>
+    <button class="toggle-btn">23</button>
+    <button class="toggle-btn">24</button>
   </div>
+  <br>
+  <input type="text" id="input1" size="10" placeholder="開始時間" />
+  <input type="text" id="input2" size="10" placeholder="終了時間" />
+  <button id="saveBtn">決定</button>
+  <button id="clearBtn">クリア</button>
 
-  <script>
-    let isMouseDown = false;
+  <h2>値1の一覧</h2>
+  <ul id="ataiList1"></ul>
+  <h2>値2の一覧</h2>
+  <ul id="ataiList2"></ul>
 
-    document.addEventListener('mousedown', () => isMouseDown = true);
-    document.addEventListener('mouseup', () => isMouseDown = false);
-
-    const buttons = document.querySelectorAll('.toggle-btn');
-
-    buttons.forEach(button => {
-      // 通常のクリックでも切り替え
-      button.addEventListener('mousedown', toggle);
-
-      // マウスオーバー中にドラッグで切り替え
-      button.addEventListener('mouseenter', () => {
-        if (isMouseDown) {
-          toggle({ target: button });
-        }
-      });
-    });
-
-    function toggle(e) {
-      e.target.classList.toggle('active');
-    }
-  </script>
+  <script src="option.js"></script>
+  <script src="view.js"></script>
 </body>
+
 </html>
