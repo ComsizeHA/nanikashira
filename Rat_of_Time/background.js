@@ -10,13 +10,13 @@ chrome.action.onClicked.addListener((tab) => {
   });
 });
 
-function main() {
+async function main() {
   check_config();
   //open_input();
   //check_pageLoaded();
-  const { times, work_status } = config;
-  const times_input = get_storage();
+  //const work_status = config;
+  const times_input = await get_storage();
   alert(times_input);
-  create_inputbox(times, work_status);
-  input_attendance(times, work_status);
+  create_inputbox(times_input[0], times_input[1]);
+  input_attendance(times_input[0], times_input[1]);
 }

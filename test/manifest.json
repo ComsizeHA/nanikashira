@@ -1,14 +1,10 @@
 {
-  "manifest_version": 3,
-  "name": "Atai Keeper",
+  "name": "Sync Runner Example",
   "version": "1.0",
-  "description": "Save and view values using a popup",
-  "permissions": ["storage", "tabs"],
+  "manifest_version": 3,
+  "description": "Runs async tasks in order using await",
   "action": {
-    "default_popup": "view.html",
-    "default_title": "Atai Keeper"
+    "default_popup": "popup.html"
   },
-  "background": {
-    "service_worker": "background.js"
-  }
+  "permissions": []
 }

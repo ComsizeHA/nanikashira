@@ -21,27 +21,40 @@ document.addEventListener('DOMContentLoaded', () => {
   saveBtn.addEventListener('click', () => {
     const val1 = document.getElementById('input1').value.trim();
     const val2 = document.getElementById('input2').value.trim();
-    if (val1 && val2) {
-      chrome.storage.local.get({ atai: []}, (data) => {
+    const val3 = document.getElementById('work_type').value.trim();
+    let work_type_code;
+    if (val3 === "1"){
+      work_type_code = 1;
+    } else if(val3 === "2") {
+      work_type_code = 3;
+    }
+    if (val1 && val2 && val3) {
+      chrome.storage.local.get({ atai: [],atai2: []}, (data) => {
         const updated = data.atai;
+        const updated2 = data.atai2;
         updated.push(val1);
         updated.push(val2);
+        updated2.push(work_type_code);
+        updated2.push(work_type_code + 1);
         chrome.storage.local.set({ atai: updated}, () => {
-          alert("保存しました！");
           document.getElementById('input1').value = '';
           document.getElementById('input2').value = '';
         });
+        chrome.storage.local.set({ atai2: updated2}, () => {
+          document.getElementById('work_type').value = '';
+        });
+        alert("保存しました！");
       });
     } else {
-      alert("両方の値を入力してください。");
+      alert("すべての値を入力してください。");
     }
-    window.close();
+    window.location.reload();
   });
 
   clearBtn.addEventListener('click', () => {
     chrome.storage.local.remove(['atai', 'atai2'], () => {
       alert("保存された値を削除しました。");
     });
-    window.close();
+    window.location.reload();
   });
 });

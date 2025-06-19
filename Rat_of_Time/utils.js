@@ -71,9 +71,11 @@ function check_pageLoaded() {
   });
 }
 
-async function get_storage(){
-  chrome.storage.local.get({ atai: []}, (data) => {
-    alert(data.atai);
-    return data.atai;
+///////////////chrome.storageの取得///////////////
+function get_storage(){
+  return new Promise((resolve)=> {
+    chrome.storage.local.get({ atai: [],atai2: []}, (data) => {
+      resolve([data.atai, data.atai2]);
+    });
   });
 }
