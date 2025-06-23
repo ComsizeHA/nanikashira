@@ -1,23 +1,16 @@
-function check_config() {
-  if (typeof config === "undefined") {
-    console.warn("config.js が読み込まれていません。");
+function open_input() {
+  ///////////////入力画面を開く///////////////
+  const editmenu = document.querySelectorAll('select[class^="htBlock-selectOther"]');
+
+  if (editmenu.length === 0) {
+    console.warn("ボタンが見つかりません。");
     return;
   }
-}
 
-//function open_input() {
-//  ///////////////入力画面を開く///////////////
-//  const editmenu = document.querySelectorAll('select//[class^="htBlock-selectOther"]');
-//
-//  if (editmenu.length === 0) {
-//    console.warn("ボタンが見つかりません。");
-//    return;
-//  }
-//
-//  editmenu[0].value = "#button_0590253740701";
-//  editmenu[0].dispatchEvent(new Event("change", { bubbles: true }));
-//  editmenu[0].dispatchEvent(new Event("input", { bubbles: true }));
-//}
+  editmenu[0].value = "#button_0590253740701";
+  editmenu[0].dispatchEvent(new Event("change", { bubbles: true }));
+  editmenu[0].dispatchEvent(new Event("input", { bubbles: true }));
+}
 
 ///////////////入力枠を増やす///////////////
 function create_inputbox(times, work_status) {
@@ -62,13 +55,11 @@ function input_attendance(times, work_status) {
   }
 }
 
-///////////////ページロード確認///////////////
-function check_pageLoaded() {
-  chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    if (changeInfo.status === 'complete' && tab.url) {
-      return;
-    }
-  });
+///////////////ページタイトル取得///////////////
+function get_page_title() {
+  const str = document.getElementsByClassName('htBlock-pageTitleSticky')[0].querySelectorAll('span')[0].textContent.trim();
+  console.warn(str);
+  return str;
 }
 
 ///////////////chrome.storageの取得///////////////
@@ -77,5 +68,26 @@ function get_storage(){
     chrome.storage.local.get({ atai: [],atai2: []}, (data) => {
       resolve([data.atai, data.atai2]);
     });
+  });
+}
+
+function waitForH1SpanText(targetText, timeout = 10000) {
+  return new Promise((resolve, reject) => {
+    const start = Date.now();
+
+    const interval = setInterval(() => {
+      const h1 = document.querySelector("h1 span");
+
+      if (h1 && h1.textContent.trim() === targetText) {
+        clearInterval(interval);
+        resolve();
+      }
+
+      // タイムアウト処理（任意）
+      if (Date.now() - start > timeout) {
+        clearInterval(interval);
+        reject(new Error("タイムアウト：指定のテキストが現れませんでした"));
+      }
+    }, 500); // 500ms 間隔で監視
   });
 }

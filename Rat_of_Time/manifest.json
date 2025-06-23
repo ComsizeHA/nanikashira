@@ -22,13 +22,8 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "*://*.kingtime.jp/*"
-      ],
-      "js": [
-        "utils.js",
-        "config.js"
-      ],
+      "matches": ["*://*.kingtime.jp/*"],
+      "js": ["utils.js"],
       "run_at": "document_idle"
     }
   ]
