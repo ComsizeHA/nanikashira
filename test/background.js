@@ -1,14 +1,8 @@
-chrome.webNavigation.onHistoryStateUpdated.addListener(details => {
-  console.log('[webNavigation] URL changed to:', details.url);
-  // ここで必要な処理を呼び出す
-}, {
-  url: [{ hostContains: 'kingtime.ne.jp' }]
-});
+// ページの読み込みが完了したタイミングで呼ばれる（MPA対応）
+chrome.webNavigation.onCompleted.addListener((details) => {
+  console.log("MPA遷移検出:", details.url);
 
-// 通常のフルリロードや click による遷移もキャッチ
-chrome.webNavigation.onCompleted.addListener(details => {
-  console.log('[webNavigation] page loaded:', details.url);
-  console.log("asi")
+  console.log("aiueo");
 }, {
-  url: [{ hostContains: 'kingtime.ne.jp' }]
+  url: [{ schemes: ["http", "https"] }]
 });

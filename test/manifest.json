@@ -1,14 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "MPA Transition Detector",
-  "version": "1.0.0",
-  "description": "Detects MPA-style page reloads and executes content logic.",
-  "permissions": [],
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_idle"
-    }
-  ]
+  "name": "MPA Navigation Detector",
+  "version": "1.0",
+  "description": "Detects page transitions in MPA and triggers background logic.",
+  "permissions": [
+    "webNavigation",
+    "tabs"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": ["<all_urls>"]
 }
